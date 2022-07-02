@@ -1,0 +1,92 @@
+{
+  "name": "dofus-db-map-overlay",
+  "version": "0.1.0",
+  "description": "DofusDB Map Overlay",
+  "author": {
+    "name": "MartiNu",
+    "url": "https://github.com/martinbonneau",
+    "email": "martin@shadetrees.studio"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "electron-esbuild dev",
+    "build": "electron-esbuild build",
+    "package": "electron-builder",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/eslint-parser": "^7.17.0",
+    "@typescript-eslint/eslint-plugin": "~5.22.0",
+    "@typescript-eslint/parser": "~5.22.0",
+    "@vercel/style-guide": "^3.0.0",
+    "electron": "^18.2.0",
+    "electron-builder": "~23.0.3",
+    "electron-esbuild": "^5.0.2",
+    "electron-store": "^8.0.1",
+    "esbuild": "^0.14.38",
+    "eslint": "~8.14.0",
+    "eslint-config-prettier": "~8.5.0",
+    "eslint-plugin-import": "~2.26.0",
+    "eslint-plugin-prettier": "~4.0.0",
+    "husky": "~7.0.4",
+    "lint-staged": "^12.4.1",
+    "prettier": "~2.6.2",
+    "rimraf": "~3.0.2",
+    "typescript": "~4.6.4"
+  },
+  "build": {
+    "appId": "studio.shadetrees.martinu.dofusdb-map",
+    "productName": "Dofus DB - Map Overlay",
+    "copyright": "Copyright © MartiNu",
+    "extraMetadata": {
+      "name": "Dofus Map Overlay",
+      "main": "main.js"
+    },
+    "artifactName": "${productName}.${ext}",
+    "files": [
+      {
+        "from": ".",
+        "filter": [
+          "package.json"
+        ]
+      },
+      {
+        "from": "dist/main"
+      }
+    ],
+    "nsis": {
+      "oneClick": true
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage",
+        "tar.gz"
+      ],
+      "category": "Game"
+    },
+    "directories": {
+      "buildResources": "resources"
+    },
+    "publish": null
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  }
+}
